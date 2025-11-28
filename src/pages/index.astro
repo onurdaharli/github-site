@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ScrollProgress from '../components/ScrollProgress';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import Career from '../components/Career';
+import Education from '../components/Education';
+import Certifications from '../components/Certifications';
+import Interests from '../components/Interests';
+import ImageSlider from '../components/ImageSlider';
+import Footer from '../components/Footer';
+---
+
+<Layout title="Onur Daharlı · Consultant IT Business Analyst">
+  <ScrollProgress client:load />
+  <Navbar client:load />
+  <Hero client:load />
+  <Career client:visible />
+  <Education client:visible />
+  <Certifications client:visible />
+  <Interests client:visible />
+  <ImageSlider client:visible />
+  <Footer client:visible />
+</Layout>
