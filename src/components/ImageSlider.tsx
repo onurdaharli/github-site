@@ -10,54 +10,63 @@ const ImageSlider = () => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
 
-  const images = [
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (2).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (10).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.26 (1).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.32.21.jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.28.47.jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.29.55.jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.29.39.jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.26 (2).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.26.jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (1).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (3).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (4).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (5).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (6).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (7).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (8).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (9).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (11).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (12).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (13).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (14).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (15).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (16).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (17).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (18).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27 (19).jpeg',
-    '/assets/WhatsApp Image 2025-11-28 at 22.14.27.jpeg',
+  const media = [
+    { type: 'image', src: '/assets/img-05.jpg' },
+    { type: 'image', src: '/assets/img-12.jpg' },
+    { type: 'image', src: '/assets/img-01.jpg' },
+    { type: 'image', src: '/assets/img-02.jpg' },
+    { type: 'image', src: '/assets/img-03.jpg' },
+    { type: 'image', src: '/assets/img-04.jpg' },
+    { type: 'image', src: '/assets/img-06.jpg' },
+    { type: 'image', src: '/assets/img-07.jpg' },
+    { type: 'image', src: '/assets/img-08.jpg' },
+    { type: 'image', src: '/assets/img-09.jpg' },
+    { type: 'image', src: '/assets/img-10.jpg' },
+    { type: 'image', src: '/assets/img-11.jpg' },
+    { type: 'image', src: '/assets/img-13.jpg' },
+    { type: 'image', src: '/assets/img-14.jpg' },
+    { type: 'image', src: '/assets/img-15.jpg' },
+    { type: 'image', src: '/assets/img-16.jpg' },
+    { type: 'image', src: '/assets/img-17.jpg' },
+    { type: 'image', src: '/assets/img-18.jpg' },
+    { type: 'image', src: '/assets/img-19.jpg' },
+    { type: 'image', src: '/assets/img-20.jpg' },
+    { type: 'image', src: '/assets/img-21.jpg' },
+    { type: 'image', src: '/assets/img-22.jpg' },
+    { type: 'image', src: '/assets/img-23.jpg' },
+    { type: 'image', src: '/assets/img-24.jpg' },
+    { type: 'image', src: '/assets/img-25.jpg' },
+    { type: 'image', src: '/assets/img-26.jpg' },
+    { type: 'image', src: '/assets/img-27.jpg' },
+    { type: 'image', src: '/assets/img-28.jpg' },
+    { type: 'image', src: '/assets/img-29.jpg' },
+    { type: 'image', src: '/assets/img-30.jpg' },
+    { type: 'image', src: '/assets/img-31.jpg' },
+    { type: 'image', src: '/assets/img-32.jpg' },
+    { type: 'video', src: '/assets/vid-01.mp4' },
+    { type: 'video', src: '/assets/vid-02.mp4' },
+    { type: 'video', src: '/assets/vid-03.mp4' },
+    { type: 'video', src: '/assets/vid-04.mp4', aspectRatio: 'landscape' },
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       if (!isPaused) {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % media.length);
       }
     }, 2500);
 
     return () => clearInterval(timer);
-  }, [images.length, isPaused]);
+  }, [media.length, isPaused]);
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? media.length - 1 : prevIndex - 1
     );
   };
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % media.length);
   };
 
   const goToSlide = (index: number) => {
@@ -122,7 +131,7 @@ const ImageSlider = () => {
             {/* Main Slider */}
             <div className="relative glass-card p-2 rounded-2xl">
               <div 
-                className="relative aspect-video overflow-hidden rounded-xl"
+                className={`relative ${media[currentIndex].aspectRatio === 'landscape' ? 'aspect-[3/2]' : 'aspect-video'} overflow-hidden rounded-xl`}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
                 onTouchStart={onTouchStart}
@@ -138,17 +147,28 @@ const ImageSlider = () => {
                     transition={{ duration: 0.5 }}
                     className="relative w-full h-full"
                   >
-                    <img
-                      src={images[currentIndex]}
-                      alt={`Gallery image ${currentIndex + 1}`}
-                      className="w-full h-full object-contain"
-                    />
+                    {media[currentIndex].type === 'image' ? (
+                      <img
+                        src={media[currentIndex].src}
+                        alt={`Gallery image ${currentIndex + 1}`}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <video
+                        src={media[currentIndex].src}
+                        controls
+                        className="w-full h-full object-contain"
+                        onPlay={() => setIsPaused(true)}
+                        onPause={() => setIsPaused(false)}
+                        onEnded={() => setIsPaused(false)}
+                      />
+                    )}
                     
                     {/* Expand Button */}
                     <button
                       onClick={() => openModal(currentIndex)}
                       className="absolute top-4 right-4 p-2 bg-dark-950/50 backdrop-blur-md rounded-lg text-dark-200 hover:text-primary-400 transition-colors"
-                      aria-label="Resmi büyüt"
+                      aria-label={media[currentIndex].type === 'image' ? "Resmi büyüt" : "Videoyu büyüt"}
                     >
                       <Maximize2 className="w-5 h-5" />
                     </button>
@@ -177,7 +197,7 @@ const ImageSlider = () => {
             <div className="mt-6">
               <div className="overflow-x-auto pb-4 scrollbar-hide">
                 <div className="flex gap-3 min-w-max px-4">
-                  {images.map((image, index) => (
+                  {media.map((item, index) => (
                     <button
                       key={index}
                       onClick={() => goToSlide(index)}
@@ -188,12 +208,30 @@ const ImageSlider = () => {
                       }`}
                       aria-label={`Slide ${index + 1}`}
                     >
-                      <img
-                        src={image}
-                        alt={`Thumbnail ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
+                      {item.type === 'image' ? (
+                        <img
+                          src={item.src}
+                          alt={`Thumbnail ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <video
+                          src={item.src}
+                          className="w-full h-full object-cover"
+                          muted
+                          preload="metadata"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-gradient-to-t from-dark-950/20 to-transparent" />
+                      {item.type === 'video' && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="p-2 bg-dark-950/50 backdrop-blur-md rounded-full">
+                            <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8 5v14l11-7z"/>
+                            </svg>
+                          </div>
+                        </div>
+                      )}
                     </button>
                   ))}
                 </div>
@@ -226,11 +264,19 @@ const ImageSlider = () => {
               className="relative max-w-none max-h-none w-auto h-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={images[modalImageIndex]}
-                alt={`Gallery image ${modalImageIndex + 1}`}
-                className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
-              />
+              {media[modalImageIndex].type === 'image' ? (
+                <img
+                  src={media[modalImageIndex].src}
+                  alt={`Gallery image ${modalImageIndex + 1}`}
+                  className={`${media[modalImageIndex].aspectRatio === 'landscape' ? 'max-w-[90vw] max-h-[60vh]' : 'max-w-[90vw] max-h-[90vh]'} object-contain rounded-lg`}
+                />
+              ) : (
+                <video
+                  src={media[modalImageIndex].src}
+                  controls
+                  className={`${media[modalImageIndex].aspectRatio === 'landscape' ? 'max-w-[90vw] max-h-[60vh]' : 'max-w-[90vw] max-h-[90vh]'} object-contain rounded-lg`}
+                />
+              )}
               <button
                 onClick={closeModal}
                 className="absolute top-4 right-4 p-2 bg-dark-950/50 backdrop-blur-md rounded-lg text-dark-200 hover:text-primary-400 transition-colors"
